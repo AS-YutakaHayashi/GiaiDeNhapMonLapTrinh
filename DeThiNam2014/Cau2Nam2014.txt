@@ -1,0 +1,70 @@
+#include "stdio.h"
+#include "conio.h"
+#include "string.h"
+
+void NhapMang2Chieu(int A[100][100],int m , int n)
+{
+	for (int i=1;i<=m;i++)
+	{
+		for (int j=1;j<=n;j++)
+		{
+			printf("Nhap A[%d][%d]", i, j);
+			scanf("%d",&A[i][j]);
+		}
+	}
+}
+void XuatMang2Chieu(int A[100][100], int m, int n)
+{
+	for (int i=1;i<=m;i++)
+	{
+		for (int j=1;j<=n;j++)
+		{
+			printf("%3d",A[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void TinhTongTamGiacTren1(int A[100][100], int m, int n)
+{
+	int tong = 0;
+	for (int i=1;i<=m;i++)
+	{
+		for (int j=i;j<=m;j++)
+		{
+			tong = tong + A[i][j];
+		}
+	}
+	printf("Tong Tam Giac Tren 2 for = %d",tong);
+}
+
+int tong = 0;
+int TinhTongTamGiacTren2(int A[100][100], int m, int n)
+{
+	if (m>0)
+	{
+		for (int i = 1;i<=m;i++)
+		{
+			tong = tong + A[i][m];
+		}
+		TinhTongTamGiacTren2(A, m-1 , n-1);
+
+	}
+	return tong;
+	//printf("\nTong Tam Giac Tren 1 for = %d", tong);
+}
+
+void main()
+{
+	/*
+		Do minh lam chi~ doc cau hoi~ thoi khong biet no la ma tran A[n][n] ma lam bieng sua~ nen cac ban 
+		sua~ lai dum nhe cung~ khong co gi khac voi ma tran A[m][n] chi la m va n bang nhau thoi . 
+	*/
+	int A[100][100];
+	NhapMang2Chieu(A, 3, 3);
+	XuatMang2Chieu(A, 3, 3);
+	TinhTongTamGiacTren1(A, 3, 3);
+	int kq = TinhTongTamGiacTren2(A, 3, 3);
+	printf("\nTong Tam Giac Tren 1 for = %d", kq);
+	getch();
+}
